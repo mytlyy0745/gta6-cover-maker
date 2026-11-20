@@ -1,19 +1,24 @@
-Fonts in this folder — SIL Open Font License 1.1
-================================================
+Fonts shipped with Vice City Cover Maker (app/fonts/)
+=========================================================
 
-Anton-Regular.ttf
-  Designed by Vernon Adams, distributed by the Anton Project.
-  Source: https://github.com/google/fonts/tree/main/ofl/anton
-  License: SIL Open Font License, Version 1.1
-  (https://scripts.sil.org/OFL — the full license text ships with the
-  Anton project at the source above.)
+Both fonts below are licensed under the SIL Open Font License, Version 1.1
+(https://openfontlicense.org). You may use, study, copy, merge, embed,
+modify, redistribute and sell them, with or without the app, as long as the
+font files themselves are not sold on their own and any modified version
+keeps the same licence and a different name. The full licence text is
+available at https://scripts.sil.org/OFL.
 
-ArchivoBlack-Regular.ttf
-  Designed by Omnibus-Type (https://www.omnibus-type.com/).
-  Source: https://github.com/google/fonts/tree/main/ofl/archivoblack
-  License: SIL Open Font License, Version 1.1
-  (https://scripts.sil.org/OFL)
+1. BebasNeue-Regular.ttf — "Bebas Neue"
+   Copyright 2019 The Bebas Neue Project Authors
+   (https://github.com/dharmatype/Bebas-Neue)
+   Source: https://github.com/google/fonts/tree/main/ofl/bebasneue
+   Used for the big cover caption and headings.
 
-Both files were downloaded fresh from the google/fonts repository during
-this build. They are the only fonts the app uses, and no Rockstar Games
-font, logo, artwork or wordmark is shipped anywhere in this app.
+2. RussoOne-Regular.ttf — "Russo One"
+   Copyright 2012 The Russo One Project Authors
+   (https://github.com/google/fonts/tree/main/ofl/russoone)
+   Source: https://github.com/google/fonts/tree/main/ofl/russoone
+   Used for the tagline, kicker strip and editor interface.
+
+No Rockstar Games font, logo, artwork or character is used anywhere in
+this app. The lettering is set in these two OFL faces only.

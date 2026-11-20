@@ -3,86 +3,109 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vice City Cover Maker — GTA-style cover art from your photo</title>
+<title>Vice City Cover Maker — turn your photo into sunset poster art</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="top">
-  <div>
-    <h1>VICE CITY <span>COVER MAKER</span></h1>
-    <p class="sub">Your photo + a caption → GTA-style multi-panel cover art. Everything runs on your machine; photos are never uploaded.</p>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>Vice City Cover Maker</h1>
+      <p class="tagline">Your photo. A sunset grade. A poster worth sharing.</p>
+    </div>
   </div>
-  <div class="badge">100% OFFLINE</div>
+  <p class="offline-note">Runs fully offline — photos never leave your machine.</p>
 </header>
 
-<main class="layout">
-  <section class="stage">
-    <div id="dropZone" class="drop" title="Drop a photo here, or use the picker below">
-      <canvas id="preview" width="1080" height="1080" aria-label="Cover preview — click a panel to select it, drag to move its photo"></canvas>
-      <p class="hint">Click a panel to select it · drag on the preview to move its photo</p>
+<main class="workbench">
+  <section class="stage-wrap" aria-label="Cover preview">
+    <div class="stage-frame">
+      <canvas id="stage" width="1080" height="1080"></canvas>
+      <div id="dropHint" class="drop-hint">Drop a photo anywhere to fill the selected panel</div>
     </div>
-    <p id="status" class="status" role="status">Loading…</p>
+    <div class="stage-foot">
+      <span id="sizeLabel">Preview: 1080 × 1080</span>
+      <span id="statusLine" role="status">Loading the boulevard sample…</span>
+    </div>
   </section>
 
-  <aside class="panel">
-    <section>
+  <aside class="controls" aria-label="Cover controls">
+    <section class="panel-box">
       <h2>1 · Photo</h2>
-      <label class="filebtn" for="photoInput">Choose a photo…</label>
-      <input id="photoInput" type="file" accept="image/*" multiple hidden>
-      <div class="row">
-        <button id="fillAllBtn" type="button">Fill all panels</button>
-        <button id="clearBtn" type="button">Clear panels</button>
+      <label class="file-btn" for="photoInput">Choose a photo</label>
+      <input id="photoInput" type="file" accept="image/*" hidden>
+      <p class="hint">Or drag a photo onto the preview. It fills the panel you have selected below.</p>
+      <div class="sample-row">
+        <button type="button" class="sample-btn" data-sample="samples/boulevard.jpg">Boulevard sample</button>
+        <button type="button" class="sample-btn" data-sample="samples/pier.jpg">Pier sample</button>
+        <button type="button" id="fillAllBtn" class="sample-btn wide">Use this photo in every panel</button>
       </div>
-      <p class="small">One photo fills the selected panel; several photos fill one panel each. Or try a bundled sample:</p>
-      <div class="row">
-        <button id="sampleBoulevardBtn" type="button">Sample: boulevard</button>
-        <button id="samplePierBtn" type="button">Sample: pier</button>
+      <div class="panel-picker" role="group" aria-label="Choose a panel to edit">
+        <button type="button" class="panel-btn active" data-panel="hero">Hero</button>
+        <button type="button" class="panel-btn" data-panel="left">Left</button>
+        <button type="button" class="panel-btn" data-panel="right">Right</button>
       </div>
-    </section>
-
-    <section>
-      <h2>2 · Pick a panel &amp; crop it</h2>
-      <div id="panelRow" class="row wrap"></div>
-      <label class="slider">Zoom <span id="zoomLabel">100%</span>
-        <input id="zoomRange" type="range" min="50" max="300" value="100">
+      <label class="slider-row">Zoom
+        <input id="zoomSlider" type="range" min="1" max="3" step="0.05" value="1.15">
+        <output id="zoomOut">1.15×</output>
+      </label>
+      <label class="slider-row">Pan left–right
+        <input id="panXSlider" type="range" min="-100" max="100" step="1" value="0">
+        <output id="panXOut">0</output>
+      </label>
+      <label class="slider-row">Pan up–down
+        <input id="panYSlider" type="range" min="-100" max="100" step="1" value="0">
+        <output id="panYOut">0</output>
       </label>
     </section>
 
-    <section>
-      <h2>3 · Caption</h2>
-      <label class="field">Title
-        <input id="titleInput" type="text" value="VICE CITY" maxlength="24">
+    <section class="panel-box">
+      <h2>2 · Words</h2>
+      <label class="field-label" for="captionInput">Big caption
+        <input id="captionInput" type="text" maxlength="28" value="VICE CITY NIGHTS" autocomplete="off">
       </label>
-      <label class="field">Tagline
-        <input id="taglineInput" type="text" value="One last ride down Ocean Drive" maxlength="60">
+      <label class="field-label" for="taglineInput">Tagline
+        <input id="taglineInput" type="text" maxlength="64" value="Chasing the last light down the boulevard" autocomplete="off">
       </label>
-      <div class="row between">
-        <span class="small">Title colour</span>
-        <span id="colorRow" class="swatches"></span>
+      <label class="field-label" for="kickerInput">Kicker strip
+        <input id="kickerInput" type="text" maxlength="24" value="EST. 2026 · SUNSET EDITION" autocomplete="off">
+      </label>
+    </section>
+
+    <section class="panel-box">
+      <h2>3 · Sunset grade</h2>
+      <div class="grade-row" role="group" aria-label="Colour grade presets">
+        <button type="button" class="grade-btn active" data-grade="sunset">Sunset</button>
+        <button type="button" class="grade-btn" data-grade="neon">Neon Nights</button>
+        <button type="button" class="grade-btn" data-grade="palm">Palm Dusk</button>
+        <button type="button" class="grade-btn" data-grade="vice">Vice Pop</button>
       </div>
-      <label class="check"><input id="outlineCheck" type="checkbox" checked> Dark outline on the title</label>
+      <label class="slider-row">Grade strength
+        <input id="gradeSlider" type="range" min="0" max="100" step="1" value="70">
+        <output id="gradeOut">70%</output>
+      </label>
     </section>
 
-    <section>
-      <h2>4 · Colour grade</h2>
-      <div id="gradeRow" class="row wrap"></div>
-      <h2 class="tight">Look</h2>
-      <div id="lookRow" class="row wrap"></div>
-    </section>
-
-    <section>
-      <h2>5 · Export PNG</h2>
-      <div id="sizeRow" class="row wrap"></div>
-      <button id="exportBtn" type="button" class="export">Export PNG ↓</button>
-      <p class="small">Saved as <code>vice-cover-&lt;width&gt;x&lt;height&gt;.png</code> in your downloads.</p>
+    <section class="panel-box">
+      <h2>4 · Export</h2>
+      <div class="size-row" role="group" aria-label="Export size">
+        <label><input type="radio" name="exportSize" value="1080x1080" checked> 1080 × 1080</label>
+        <label><input type="radio" name="exportSize" value="1080x1350"> 1080 × 1350</label>
+        <label><input type="radio" name="exportSize" value="1920x1080"> 1920 × 1080</label>
+      </div>
+      <button type="button" id="exportBtn" class="export-btn">Export PNG</button>
+      <p class="hint">Saves as <code>vice-cover-1080x1080.png</code> (or the size you picked).</p>
     </section>
   </aside>
 </main>
 
-<footer>
-  <p>Original design — no Rockstar Games logo, artwork or font. Display type: Anton &amp; Archivo Black, both SIL Open Font License (see <code>fonts/OFL.txt</code>). Sample photos were made with an image model for make.fun and are free to use.</p>
+<footer class="footnote">
+  <p>Original art made with your own photos. No game logos, artwork or fonts — display type is Bebas Neue, secondary type is Russo One, both under the SIL Open Font License (see <code>app/fonts/OFL.txt</code>).</p>
 </footer>
 
-<script type="module" src="src/main.js"></script>
+<script src="src/cover.js"></script>
+<script src="src/shots.js"></script>
+<script src="src/main.js"></script>
 </body>
 </html>
