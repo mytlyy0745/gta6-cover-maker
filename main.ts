@@ -8,6 +8,10 @@
 // screenshots/ (the first by name is the cover) and run it.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
+// Vice City Cover Maker (built in this session): app/ is the multi-panel
+// cover maker — hero + two panels, per-panel crop/zoom, caption + tagline,
+// three sunset/neon grades, PNG export at 1080x1080, 1080x1350, 1920x1080.
+// Screenshots in screenshots/ are the app's own exports and editor shots.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 

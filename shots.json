@@ -1,5 +1,1 @@
-[
-  { "name": "1-cover.jpg", "query": "?shot=cover&photo=pier&caption=Sunset%20Heist", "w": 1080, "h": 1080 },
-  { "name": "2-editor.jpg", "query": "?shot=editor&photo=boulevard&caption=Boulevard%20Queen", "w": 1280, "h": 720 },
-  { "name": "3-cover.jpg", "query": "?shot=cover&photo=boulevard&caption=Boulevard%20Queen", "w": 1080, "h": 1080 }
-]
+[{"h":1080,"how":"Exported 1080x1080 PNG from the app (Export button), scaled to 1024x1024 JPEG","name":"1-cover.jpg","query":"?shot=editor&photo=pier&caption=Sunset%20Heist&size=1080x1080","w":1080},{"h":800,"how":"Browser screenshot of the editor with photos in all three panels","name":"2-editor.jpg","query":"?shot=editor&photo=boulevard&caption=Boulevard%20Queen&grade=neon&size=1080x1080","w":1280},{"h":1080,"how":"Exported 1920x1080 PNG from the app (Export button), scaled to 1280x720 JPEG","name":"3-cover.jpg","query":"?shot=editor&photo=pier&caption=Sunset%20Heist&grade=dusk&size=1920x1080","w":1920}]
